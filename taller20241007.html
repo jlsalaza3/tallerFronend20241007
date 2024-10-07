@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+    <p>1.	Crear a una función que recibe la velocidad en Km/hora y la muestra en metros/hora y millas/hora.</p>
+
+    <button type="button" onclick="convertir()">Convertir velocidad</button>
+
+    <p id="resultado"></p>
+    
+ 
+    <script>
+        function convertir(){
+
+        let velocidad=parseInt(prompt("ingrese la velocidad en Kilometros/hora"));
+        let velocidadMetros=velocidad*1000;
+        let velocidadMillas=velocidad*0.621371
+            
+        document.getElementById('resultado').innerHTML = "el equivalente a" + velocidad+"Kilometros por Hora" + "en Metros por Hora es"+velocidadMetros+"y el equivalente en Millas por Hora es "+ velocidadMillas;
+    }
+
+    </script>
+
+    <p>2.	Dado la duración (en minutos) de una llamada telefónica, calcular su costo, de la siguiente manera: Hasta 5 min el costo es 200. Por encima de 5 min el costo es 200 + 150 por cada minuto adicional a los 5 primeros minutos.</p>
+
+    
+    <button type="button" onclick="costo()">Costo llamada</button>
+
+    <p id="valorminutos"></p>
+    
+ 
+    <script>
+        function costo(){
+
+        let minutos=parseInt(prompt("ingrese el numero de minutos de la llamada"));
+
+        if(minutos<=5){
+            let costo=200
+            document.getElementById('valorminutos').innerHTML = "el precio de los " + minutos+" que hablaste es " + costo;
+        }else{
+            let costo=200+((minutos-5)*150)
+            document.getElementById('valorminutos').innerHTML = "el precio de los " + minutos+" que hablaste es " + costo;
+        }
+
+            
+
+    }
+
+    </script>
+
+<p>3.	Cree un conversor de temperatura, investigando la fórmula para pasar grados Celsius a Fahrenheit y viceversa, pida al usuario la temperatura a convertir y muestra en pantalla lo siguiente:
+    o	Si la Temperatura es menos 0°C o 32°F: Nos congelamos 
+    o	Si la Temperatura es entre de 5°C a 15°C o 37°F a 50°F: Está haciendo frio
+    o	Si la Temperatura es entre de 16°C a 25°C o 51°F a 77°F: Está templado el día
+    o	Si la Temperatura es más de 25°C o más de 77°F: Tiene fiebre o es el apocalipsis.
+    </p>
+
+    <h1>Calculadora de Temperatura Celcius a Fahrenheit y viceversa</h1>
+
+
+
+<form action="">
+    <label for="">Valor de Temperatura a convertir</label>
+    <input type="number" name="" id="monto" placeholder="Ingrese la temperatura a convertir">
+    <br><br>
+
+    <label for="">Selección tipo de temperatura ingresada</label>
+    <select name="" id="operacion" onchange="calculadora()">
+        <option value="1">Convertir Monto de Celcius a Fahrenheit</option>
+        <option value="2">Convertir Monto de Fahrenheit a Celcius</option>
+        
+    </select>
+    
+</form>
+<br><br>
+<p id="resultado2"></p> 
+<script>
+
+function calculadora() {
+
+// datos de entrada
+let monto = Number(document.querySelector('#monto').value);
+let opcion =document.querySelector('#operacion').value;
+
+/*Para convertir Fahrenheit a grados centígrados: restar 32 y luego multiplicar por 5/ 9 o 0,555. Para convertir grados centígrados a Fahrenheit: multiplicar por 9/ 5 o por 1,8 y luego sumar 32.
+*/
+
+// proceso
+
+let resultado;
+
+switch(opcion){
+
+case '1':
+    resultado = (monto*1.8)+32;
+    resultado = resultado.toFixed(2)
+    console.log(resultado);
+
+    if(resultado<=32){
+        document.getElementById("resultado2").innerHTML="Nos congelamos"+resultado
+    }else if(resultado<=50){
+         document.getElementById("resultado2").innerHTML="Está haciendo frio"+resultado
+    }else if(resultado<=77){
+        document.getElementById("resultado2").innerHTML="Está templado el día"+resultado
+    } else{
+        document.getElementById("resultado2").innerHTML="Tiene fiebre o es la apolalipsis"+resultado
+    }
+
+
+    break;
+    
+
+case '2':
+    resultado = (monto-32)*0.555;
+    resultado = resultado.toFixed(2)
+    console.log(resultado);
+
+    if(resultado<=0){
+        document.getElementById("resultado2").innerHTML="Nos congelamos"+resultado
+    }else if(resultado<=15){
+         document.getElementById("resultado2").innerHTML="Está haciendo frio"+resultado
+    }else if(resultado<=25){
+        document.getElementById("resultado2").innerHTML="Está templado el día"+resultado
+    } else{
+        document.getElementById("resultado2").innerHTML="Tiene fiebre o es la apolalipsis"+resultado
+    }
+    break;
+
+default:
+    alert('Opción incorrecta. Intente nuevamente.');
+    break;
+
+}
+//datos de salida
+
+
+}
+
+</script>
+
+
+<p>4.	Calcule el índice de masa muscular de una persona (IMC=peso/estatura x altura), pidiendo como datos su estatura y peso. imprima en pantalla lo siguiente: 
+    o	Si el IMC es por debajo de 18.5: Bajo peso debe ir al nutricionista
+    o	Si el IMC es 18.5—24.9: Normal
+    o	Si el IMC es 25.0—29.9: Sobrepeso 
+    o	Si el IMC es 30.0 o más: Obeso debe ir al nutricionista
+    </p>
+
+    <button type="button" onclick="imc()">Calcule su Indice de Masa Muscular</button>
+
+    <p id="resultado3"></p>
+    
+ 
+    <script>
+        function imc(){
+
+        let peso=Number(prompt("ingrese su peso en Kilogramos"));
+        let altura=Number(prompt("ingrese su estatura en metros"));
+        let indice= peso/(altura*altura);
+
+        if(indice<18.5){
+            document.getElementById('resultado3').innerHTML = "Su IMC es: " + indice+"Bajo peso debe ir al nutricionista";
+        }else if(indice<24.9){
+            document.getElementById('resultado3').innerHTML = "Su IMC es: " + indice+"Peso Normal";
+        }else if(indice<29.9){
+            document.getElementById('resultado3').innerHTML = "Su IMC es: " + indice+"Esta en sobrepeso consulte un nutricionista";
+        }else{
+            document.getElementById('resultado3').innerHTML = "Su IMC es: " + indice+"Obeso debe ir al nutricionista";
+        }
+
+
+
+
+
+            
+        
+    }
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
